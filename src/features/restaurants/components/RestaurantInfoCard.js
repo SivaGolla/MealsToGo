@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "../../../components/typography/text.component.js";
+import { Text } from "../../../components/typography/text.component";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
@@ -35,7 +35,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     <RestaurantCard elevation={5}>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
-        <Text variant="body">{name}</Text>
+        <Text variant="label">{name}</Text>
         <Section>
           <Rating>
             {ratingList.map(() => (
@@ -44,7 +44,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && (
-              <Text style={{ color: "red" }}>CLOSED TEMPORARILY </Text>
+              <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
             <Spacer position="left" size="large">
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}

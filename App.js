@@ -14,6 +14,8 @@ import {
 
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+
 function MapScreen() {
   return (
     <SafeArea>
@@ -48,32 +50,33 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ color, size }) => {
-                let iconName;
+        <RestaurantsContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={({ route }) => ({
+                tabBarIcon: ({ color, size }) => {
+                  let iconName;
 
-                if (route.name === "Restaurants") {
-                  iconName = "restaurant";
-                } else if (route.name === "Map") {
-                  iconName = "map";
-                } else if (route.name === "Settings") {
-                  iconName = "settings";
-                }
+                  if (route.name === "Restaurants") {
+                    iconName = "restaurant";
+                  } else if (route.name === "Map") {
+                    iconName = "map";
+                  } else if (route.name === "Settings") {
+                    iconName = "settings";
+                  }
 
-                // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-            })}
-          >
-            <Tab.Screen name="Restaurants" component={RestaurantsPage} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
+                  return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: "tomato",
+                tabBarInactiveTintColor: "gray",
+              })}
+            >
+              <Tab.Screen name="Restaurants" component={RestaurantsPage} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantsContextProvider>
       </ThemeProvider>
     </>
   );
