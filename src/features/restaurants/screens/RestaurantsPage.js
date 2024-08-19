@@ -1,11 +1,12 @@
-import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
+import { Searchbar, ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/RestaurantInfoCard";
 import { SafeArea } from "../../../components/utils/SafeArea";
 import styled from "styled-components/native";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import { RestaurantsContext } from "../../../../src/services/restaurants/restaurants.context";
 import { useContext } from "react";
 import { Spacer } from "../../../components/Spacer";
+import { colors } from "../../../infrastructure/theme/colors";
 
 const SearchBarContainerView = styled.View`
   padding: ${(props) => props.theme.space[3]};
@@ -28,6 +29,16 @@ export const RestaurantsPage = () => {
 
   return (
     <SafeArea>
+      {isLoading && (
+        <View style={{ position: "absolute", top: "50%", left: "50%" }}>
+          <ActivityIndicator
+            size={50}
+            style={{ marginLeft: -25 }}
+            animating={true}
+            color={colors.brand.primary}
+          />
+        </View>
+      )}
       <SearchBarContainerView>
         <Searchbar />
       </SearchBarContainerView>
