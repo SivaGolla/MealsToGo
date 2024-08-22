@@ -1,22 +1,12 @@
-import { Searchbar, ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/RestaurantInfoCard";
 import { SafeArea } from "../../../components/utils/SafeArea";
 import styled from "styled-components/native";
-import { FlatList, View } from "react-native";
+import { View, FlatList } from "react-native";
 import { RestaurantsContext } from "../../../../src/services/restaurants/restaurants.context";
 import { useContext } from "react";
 import { Spacer } from "../../../components/Spacer";
-import { colors } from "../../../infrastructure/theme/colors";
-
-const SearchBarContainerView = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-  background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-
-const SearchResultsContainerView = styled.View`
-  flex: 1;
-  padding: ${(props) => props.theme.space[3]};
-`;
+import { SearchView } from "../components/SearchView";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -26,7 +16,6 @@ const RestaurantList = styled(FlatList).attrs({
 
 export const RestaurantsPage = () => {
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
-
   return (
     <SafeArea>
       {isLoading && (
@@ -35,13 +24,11 @@ export const RestaurantsPage = () => {
             size={50}
             style={{ marginLeft: -25 }}
             animating={true}
-            color={colors.brand.primary}
+            color="white"
           />
         </View>
       )}
-      <SearchBarContainerView>
-        <Searchbar />
-      </SearchBarContainerView>
+      <SearchView />
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
