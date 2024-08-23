@@ -5,13 +5,7 @@ import { SafeArea } from "../../components/utils/SafeArea";
 import { Ionicons } from "@expo/vector-icons";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 
-function MapScreen() {
-  return (
-    <SafeArea>
-      <Text>Map!</Text>
-    </SafeArea>
-  );
-}
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 function SettingsScreen() {
   return (
@@ -46,7 +40,11 @@ const AppNavigator = () => {
             tabBarInactiveTintColor: "gray",
           })}
         >
-          <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+          <Tab.Screen
+            name="Restaurants"
+            component={RestaurantsNavigator}
+            screenOptions={{ headerShown: false }}
+          />
           <Tab.Screen name="Map" component={MapScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
         </Tab.Navigator>
